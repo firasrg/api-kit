@@ -7,10 +7,16 @@
     <property name="severity" value="error"/>
     <property name="fileExtensions" value="java"/>
 
+    <!-- enables @SuppressWarnings("checkstyle:...") in source code -->
+    <module name="SuppressWarningsFilter"/>
+
     <module name="NewlineAtEndOfFile"/>
     <module name="FileTabCharacter"/>
 
     <module name="TreeWalker">
+        <!-- required by SuppressWarningsFilter -->
+        <module name="SuppressWarningsHolder"/>
+
         <!-- imports -->
         <module name="AvoidStarImport"/>
         <module name="UnusedImports"/>

@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.frg-oss</groupId>
-        <artifactId>api-kit</artifactId>
+        <artifactId>apikit</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ak-spring</artifactId>
-    <name>ak-spring</name>
+    <artifactId>apikit-spring</artifactId>
+    <name>apikit-spring</name>
 
     <dependencies>
         <dependency>

@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.frg-oss</groupId>
-    <artifactId>api-kit</artifactId>
+    <artifactId>apikit</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>api-kit</name>
+    <name>apikit</name>
 
     <modules>
-        <module>core</module>
-        <module>spring</module>
+        <module>apikit-core</module>
+        <module>apikit-spring</module>
     </modules>
 
     <properties>
@@ -42,7 +42,7 @@
             </dependency>
             <dependency>
                 <groupId>com.frg-oss</groupId>
-                <artifactId>ak-core</artifactId>
+                <artifactId>apikit-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

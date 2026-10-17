@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.frg-oss</groupId>
-        <artifactId>api-kit</artifactId>
+        <artifactId>apikit</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ak-core</artifactId>
-    <name>ak-core</name>
+    <artifactId>apikit-core</artifactId>
+    <name>apikit-core</name>
 
     <build>
         <plugins>

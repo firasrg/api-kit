@@ -25,3 +25,5 @@ mvnw.cmd      text eol=crlf
 *.gif         binary
 *.jar         binary
 *.zip         binary
+
+.githooks/*   text eol=lf

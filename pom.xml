@@ -201,5 +201,36 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>git-hooks</id>
+            <activation>
+                <property>
+                    <name>!env.CI</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.rudikershaw.gitbuildhook</groupId>
+                        <artifactId>git-build-hook-maven-plugin</artifactId>
+                        <version>3.6.0</version>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <gitConfig>
+                                <core.hooksPath>.githooks</core.hooksPath>
+                            </gitConfig>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>configure</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

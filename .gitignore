@@ -1,0 +1,42 @@
+# Build output
+target/
+dependency-reduced-pom.xml
+release.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse / VS Code / NetBeans
+.classpath
+.project
+.settings/
+.vscode/
+nbproject/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and JVM crash artifacts
+*.log
+hs_err_pid*
+*.hprof
+
+# Local environment and secrets
+.env
+.env.*
+*.local
+application-local.*
+*.pem
+*.key
+
+# Test infrastructure leftovers
+.testcontainers/

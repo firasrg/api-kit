@@ -1,0 +1,27 @@
+* text=auto
+
+*.java        text eol=lf
+*.xml         text eol=lf
+*.yml         text eol=lf
+*.yaml        text eol=lf
+*.json        text eol=lf
+*.properties  text eol=lf
+*.md          text eol=lf
+*.sh          text eol=lf
+*.sql         text eol=lf
+*.txt         text eol=lf
+
+# Maven Wrapper: mvnw has no extension, so it needs its own rule.
+# A CRLF shebang breaks it on Linux/macOS/CI.
+mvnw          text eol=lf
+mvnw.cmd      text eol=crlf
+
+*.bat         text eol=crlf
+*.cmd         text eol=crlf
+
+*.png         binary
+*.jpg         binary
+*.jpeg        binary
+*.gif         binary
+*.jar         binary
+*.zip         binary

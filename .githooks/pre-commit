@@ -2,11 +2,10 @@
 set -e
 cd "$(git rev-parse --show-toplevel)"
 
-# Skip when no Java files are staged.
 git diff --cached --name-only --diff-filter=ACM | grep -q '\.java$' || exit 0
 
-echo "pre-commit: checking formatting (Spotless)..."
-if ! ./mvnw -q --batch-mode spotless:check; then
-  echo "Formatting violations. Run './mvnw spotless:apply', re-stage, and commit again." >&2
+echo "pre-commit: Spotless + Checkstyle..."
+if ! ./mvnw -q --batch-mode spotless:check checkstyle:check; then
+  echo "Run './mvnw spotless:apply', fix Checkstyle issues, re-stage, and commit again." >&2
   exit 1
 fi

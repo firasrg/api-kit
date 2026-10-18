@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.frgoss</groupId>
     <artifactId>apikit</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>apikit</name>
-
     <modules>
         <module>apikit-core</module>
         <module>apikit-spring</module>
     </modules>
-
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputTimestamp>2026-01-01T00:00:00Z</project.build.outputTimestamp>
-
         <junit.version>5.14.4</junit.version>
         <assertj.version>3.27.7</assertj.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -47,7 +41,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -60,7 +53,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -107,13 +99,38 @@
                     <artifactId>spotless-maven-plugin</artifactId>
                     <version>3.10.4</version>
                     <configuration>
+                        <lineEndings>GIT_ATTRIBUTES</lineEndings>
                         <java>
                             <googleJavaFormat>
                                 <style>GOOGLE</style>
                             </googleJavaFormat>
-                            <removeUnusedImports/>
-                            <endWithNewline/>
+                            <removeUnusedImports />
+                            <endWithNewline />
                         </java>
+                        <formats>
+                            <format>
+                                <includes>
+                                    <include>**/pom.xml</include>
+                                    <include>config/**/*.xml</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>**/target/**</exclude>
+                                </excludes>
+                                <eclipseWtp>
+                                    <type>XML</type>
+                                    <files>
+                                        <file>${maven.multiModuleProjectDirectory}/config/spotless-xml.prefs</file>
+                                    </files>
+                                </eclipseWtp>
+                                <replaceRegex>
+                                    <name>Collapse consecutive blank lines</name>
+                                    <searchRegex>\n{3,}</searchRegex>
+                                    <replacement>\n\n</replacement>
+                                </replaceRegex>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
+                            </format>
+                        </formats>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -146,7 +163,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -185,12 +201,11 @@
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <id>checkstyle</id>
             <activation>
-                <jdk>[21,)</jdk>
+                <jdk>[25,)</jdk>
             </activation>
             <build>
                 <plugins>
@@ -201,7 +216,6 @@
                 </plugins>
             </build>
         </profile>
-
         <profile>
             <id>git-hooks</id>
             <activation>

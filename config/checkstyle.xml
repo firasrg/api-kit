@@ -3,72 +3,117 @@
         "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 <module name="Checker">
-    <property name="charset" value="UTF-8"/>
-    <property name="severity" value="error"/>
-    <property name="fileExtensions" value="java"/>
-
+    <property name="charset" value="UTF-8" />
+    <property name="severity" value="error" />
+    <property name="fileExtensions" value="java" />
     <!-- enables @SuppressWarnings("checkstyle:...") in source code -->
-    <module name="SuppressWarningsFilter"/>
-
-    <module name="NewlineAtEndOfFile"/>
-    <module name="FileTabCharacter"/>
-
+    <module name="SuppressWarningsFilter" />
+    <module name="NewlineAtEndOfFile" />
+    <module name="FileTabCharacter" />
+    <module name="LineLength">
+        <property name="max" value="100" /> <!-- match the Spotless formatter -->
+        <property name="ignorePattern" value="^package .*|^import .*|https?://" />
+    </module>
     <module name="TreeWalker">
         <!-- required by SuppressWarningsFilter -->
-        <module name="SuppressWarningsHolder"/>
-
+        <module name="SuppressWarningsHolder" />
         <!-- imports -->
-        <module name="AvoidStarImport"/>
-        <module name="UnusedImports"/>
-        <module name="RedundantImport"/>
-        <module name="IllegalImport"/>
-
+        <module name="AvoidStarImport" />
+        <module name="UnusedImports" />
+        <module name="RedundantImport" />
+        <module name="IllegalImport">
+            <property name="illegalPkgs"
+                value="sun, com.sun, javax.persistence, javax.validation, javax.servlet, javax.inject, javax.transaction" />
+        </module>
         <!-- naming -->
         <module name="PackageName">
-            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$" />
         </module>
-        <module name="TypeName"/>
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]+$" />
+        </module>
         <module name="MethodName">
-            <!-- allows test names like get_shouldReturnResponse_whenEntityExists -->
-            <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]+(_[a-zA-Z0-9]+)*$" />
         </module>
-        <module name="ConstantName"/>
-        <module name="MemberName"/>
-        <module name="ParameterName"/>
-        <module name="LocalVariableName"/>
-
+        <module name="ConstantName" />
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+        </module>
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+            <property name="ignoreOverridden" value="true" />
+        </module>
+        <module name="LocalFinalVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+        </module>
+        <module name="CatchParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+        </module>
+        <module name="StaticVariableName" />
+        <module name="RecordComponentName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+        </module>
+        <module name="PatternVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+        </module>
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]+$" />
+            <property name="allowOneCharVarInForLoop" value="true" />
+        </module>
+        <!-- file/layout -->
+        <module name="OuterTypeFilename" />
+        <module name="PackageDeclaration" />
         <!-- correctness -->
-        <module name="EqualsHashCode"/>
-        <module name="MissingSwitchDefault"/>
-        <module name="FallThrough"/>
-        <module name="SimplifyBooleanExpression"/>
-        <module name="SimplifyBooleanReturn"/>
-        <module name="StringLiteralEquality"/>
-        <module name="EmptyCatchBlock"/>
-        <module name="OneTopLevelClass"/>
-        <module name="ModifierOrder"/>
-        <module name="RedundantModifier"/>
-        <module name="UpperEll"/>
-        <module name="ArrayTypeStyle"/>
-
+        <module name="EqualsHashCode" />
+        <module name="MissingSwitchDefault" />
+        <module name="FallThrough" />
+        <module name="SimplifyBooleanExpression" />
+        <module name="SimplifyBooleanReturn" />
+        <module name="StringLiteralEquality" />
+        <module name="EmptyCatchBlock" />
+        <module name="OneTopLevelClass" />
+        <module name="ModifierOrder" />
+        <module name="RedundantModifier" />
+        <module name="UpperEll" />
+        <module name="ArrayTypeStyle" />
         <!-- hygiene -->
         <module name="TodoComment">
-            <property name="severity" value="warning"/>
-            <property name="format" value="TODO(?!\()"/>
+            <property name="severity" value="warning" />
+            <property name="format" value="TODO(?!\()" />
         </module>
-
         <!-- Javadoc on public API: warning for now -->
         <module name="MissingJavadocType">
-            <property name="severity" value="warning"/>
-            <property name="scope" value="public"/>
+            <property name="severity" value="warning" />
+            <property name="scope" value="public" />
         </module>
         <module name="MissingJavadocMethod">
-            <property name="severity" value="warning"/>
-            <property name="scope" value="public"/>
-            <property name="allowMissingPropertyJavadoc" value="true"/>
-            <property name="ignoreMethodNamesRegex" value="^(toString|equals|hashCode)$"/>
-            <property name="tokens" value="METHOD_DEF"/>
+            <property name="severity" value="warning" />
+            <property name="scope" value="public" />
+            <property name="allowMissingPropertyJavadoc" value="true" />
+            <property name="ignoreMethodNamesRegex" value="^(toString|equals|hashCode)$" />
+            <property name="tokens" value="METHOD_DEF" />
         </module>
-        <module name="InvalidJavadocPosition"/>
+        <module name="InvalidJavadocPosition" />
+        <module name="JavadocType">
+            <property name="scope" value="protected" />
+        </module>
+        <!-- correctness / API hygiene -->
+        <module name="NeedBraces" />
+        <module name="EmptyBlock" />
+        <module name="MultipleVariableDeclarations" />
+        <module name="InnerAssignment" />
+        <module name="ParameterAssignment" />
+        <module name="UnusedLocalVariable" />
+        <module name="VisibilityModifier" />
+        <module name="FinalClass" />
+        <module name="HideUtilityClassConstructor" />
+        <module name="MutableException" />
+        <module name="MissingDeprecated" />
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true" />
+            <property name="ignoreSetter" value="true" />
+            <property name="setterCanReturnItsClass" value="true" />
+            <property name="ignoreAbstractMethods" value="true" />
+        </module>
     </module>
 </module>

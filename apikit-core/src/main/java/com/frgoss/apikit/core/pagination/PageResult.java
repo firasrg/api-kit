@@ -1,6 +1,7 @@
 package com.frgoss.apikit.core.pagination;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -15,7 +16,16 @@ import java.util.function.Function;
 public record PageResult<T>(List<T> content, int page, int size, long totalElements) {
 
   public PageResult {
+
+    Objects.requireNonNull(content, "content");
+
     content = List.copyOf(content);
+
+    if (content.size() > size) {
+      throw new IllegalArgumentException(
+          "content has " + content.size() + " items, which exceeds page size " + size);
+    }
+
     if (page < 0) {
       throw new IllegalArgumentException("page must be >= 0, was " + page);
     }
@@ -27,9 +37,24 @@ public record PageResult<T>(List<T> content, int page, int size, long totalEleme
     }
   }
 
+  /** Returns whether a page exists after this one. */
+  public boolean hasNext() {
+    return page + 1 < totalPages();
+  }
+
+  /** Returns whether a page exists before this one. */
+  public boolean hasPrevious() {
+    return page > 0;
+  }
+
+  /** Returns whether this page contains at least one item. */
+  public boolean hasContent() {
+    return !content.isEmpty();
+  }
+
   /** Returns the total number of pages. */
   public int totalPages() {
-    return (int) ((totalElements + size - 1) / size);
+    return Math.toIntExact((totalElements + size - 1) / size);
   }
 
   /** Converts every item while keeping the paging metadata. */

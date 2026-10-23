@@ -1,4 +1,4 @@
-package com.frgoss.apikit.core.service;
+package io.github.firasrg.apikit.core.service;
 
 /**
  * Creates resources.

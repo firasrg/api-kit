@@ -1,4 +1,4 @@
-package com.frgoss.apikit.core.service;
+package io.github.firasrg.apikit.core.service;
 
 /**
  * CRUD service interface that combines read, create, update and delete operations.

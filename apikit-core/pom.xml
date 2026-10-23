@@ -3,19 +3,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.frgoss</groupId>
+        <groupId>io.github.firasrg</groupId>
         <artifactId>apikit</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
     <artifactId>apikit-core</artifactId>
     <name>apikit-core</name>
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.21.0</version>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -31,11 +24,10 @@
                             <rules>
                                 <bannedDependencies>
                                     <excludes>
-                                        <exclude>org.springframework</exclude>
-                                        <exclude>org.springframework.*</exclude>
+                                        <exclude>org.springframework*</exclude>
                                         <exclude>org.hibernate*</exclude>
-                                        <exclude>jakarta.persistence</exclude>
-                                        <exclude>jakarta.servlet</exclude>
+                                        <exclude>jakarta.persistence*</exclude>
+                                        <exclude>jakarta.servlet*</exclude>
                                     </excludes>
                                     <searchTransitive>true</searchTransitive>
                                 </bannedDependencies>
@@ -43,6 +35,17 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>io.github.firasrg.apikit.core</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>

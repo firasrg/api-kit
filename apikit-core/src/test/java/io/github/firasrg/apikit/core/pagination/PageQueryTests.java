@@ -1,4 +1,4 @@
-package com.frgoss.apikit.core.pagination;
+package io.github.firasrg.apikit.core.pagination;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

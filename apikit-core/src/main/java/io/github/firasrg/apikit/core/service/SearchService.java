@@ -1,7 +1,7 @@
-package com.frgoss.apikit.core.service;
+package io.github.firasrg.apikit.core.service;
 
-import com.frgoss.apikit.core.pagination.PageQuery;
-import com.frgoss.apikit.core.pagination.PageResult;
+import io.github.firasrg.apikit.core.pagination.PageQuery;
+import io.github.firasrg.apikit.core.pagination.PageResult;
 
 /**
  * Filtered search over a resource.

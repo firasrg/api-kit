@@ -145,9 +145,6 @@ Prefer readability over clever syntax.
 Target:
 
 ```text
-Spring Boot 3.5.x
-Spring Framework 6.2.x
-
 Spring Boot 4.x
 Spring Framework 7.x
 ```
@@ -163,6 +160,7 @@ Spring Boot 1.x
 Spring Boot 2.x
 Spring Framework 4.x
 Spring Framework 5.x
+Spring Framework 6.X
 javax.*
 ```
 

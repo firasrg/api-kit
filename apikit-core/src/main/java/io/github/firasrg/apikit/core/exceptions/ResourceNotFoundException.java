@@ -1,9 +1,11 @@
-package com.frgoss.apikit.core;
+package io.github.firasrg.apikit.core.exceptions;
+
+import java.io.Serial;
 
 /** Thrown when a requested resource does not exist. Mapped to HTTP 404 in the web layer. */
 public class ResourceNotFoundException extends RuntimeException {
 
-  private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 
   private final String resource;
   private final transient Object id;

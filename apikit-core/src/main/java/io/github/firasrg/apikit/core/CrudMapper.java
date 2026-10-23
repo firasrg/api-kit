@@ -1,4 +1,4 @@
-package com.frgoss.apikit.core;
+package io.github.firasrg.apikit.core;
 
 /**
  * Maps between entities and responses.

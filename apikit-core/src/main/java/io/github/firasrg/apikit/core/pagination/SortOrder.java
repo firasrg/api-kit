@@ -1,7 +1,6 @@
-package com.frgoss.apikit.core.pagination;
+package io.github.firasrg.apikit.core.pagination;
 
 import java.util.Objects;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * A single sort instruction.
@@ -19,8 +18,8 @@ public record SortOrder(String property, Direction direction) {
 
   public SortOrder {
     Objects.requireNonNull(direction, "direction");
-    if (StringUtils.isBlank(property)) {
-      throw new IllegalArgumentException("property must not be blank");
+    if (property == null || property.isBlank()) {
+      throw new IllegalArgumentException("property must not be null or blank");
     }
   }
 }

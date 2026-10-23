@@ -1,6 +1,6 @@
-package com.frgoss.apikit.core.service;
+package io.github.firasrg.apikit.core.service;
 
-import com.frgoss.apikit.core.ResourceNotFoundException;
+import io.github.firasrg.apikit.core.exceptions.ResourceNotFoundException;
 
 /**
  * Updates resources.

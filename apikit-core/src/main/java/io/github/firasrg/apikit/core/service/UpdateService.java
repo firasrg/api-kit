@@ -1,6 +1,6 @@
 package io.github.firasrg.apikit.core.service;
 
-import io.github.firasrg.apikit.core.exceptions.ResourceNotFoundException;
+import io.github.firasrg.apikit.core.exception.ResourceNotFoundException;
 
 /**
  * Updates resources.
@@ -9,6 +9,7 @@ import io.github.firasrg.apikit.core.exceptions.ResourceNotFoundException;
  * @param <U> update request type
  * @param <R> response type
  */
+@SuppressWarnings("java:S119")
 public interface UpdateService<ID, U, R> {
 
   /**

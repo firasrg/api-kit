@@ -1,12 +1,13 @@
 package io.github.firasrg.apikit.core.service;
 
-import io.github.firasrg.apikit.core.exceptions.ResourceNotFoundException;
+import io.github.firasrg.apikit.core.exception.ResourceNotFoundException;
 
 /**
  * Deletes resources.
  *
  * @param <ID> identifier type
  */
+@SuppressWarnings("java:S119")
 public interface DeleteService<ID> {
 
   /**

@@ -1,6 +1,6 @@
 package io.github.firasrg.apikit.core.service;
 
-import io.github.firasrg.apikit.core.exceptions.ResourceNotFoundException;
+import io.github.firasrg.apikit.core.exception.ResourceNotFoundException;
 import io.github.firasrg.apikit.core.pagination.PageQuery;
 import io.github.firasrg.apikit.core.pagination.PageResult;
 

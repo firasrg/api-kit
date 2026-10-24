@@ -1,4 +1,4 @@
-package io.github.firasrg.apikit.core.exceptions;
+package io.github.firasrg.apikit.core.exception;
 
 import java.io.Serial;
 

@@ -6,14 +6,14 @@ import java.util.Objects;
 /**
  * A request for one page of results.
  *
+ * <p>Only structural invariants are enforced here. Default and maximum page size are policy,
+ * defined by the integration layer.
+ *
  * @param page zero-based page index
  * @param size number of items per page, at least 1
- * @param sort ordered sort instructions, never null; empty means unsorted
+ * @param sort ordered sort instructions; never null and no null elements, empty means unsorted
  */
 public record PageQuery(int page, int size, List<SortOrder> sort) {
-
-  /** Page size used when the caller does not specify one. */
-  public static final int DEFAULT_SIZE = 20;
 
   public PageQuery {
     if (page < 0) {
@@ -28,10 +28,5 @@ public record PageQuery(int page, int size, List<SortOrder> sort) {
   /** Returns an unsorted query for the given page and size. */
   public static PageQuery of(int page, int size) {
     return new PageQuery(page, size, List.of());
-  }
-
-  /** Returns the first page with {@link #DEFAULT_SIZE}, unsorted. */
-  public static PageQuery firstPage() {
-    return of(0, DEFAULT_SIZE);
   }
 }

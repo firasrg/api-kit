@@ -1,4 +1,4 @@
-package io.github.firasrg.apikit.core.exceptions;
+package io.github.firasrg.apikit.core.exception;
 
 import java.io.Serial;
 
@@ -10,18 +10,24 @@ public class ResourceNotFoundException extends RuntimeException {
   private final String resource;
   private final transient Object id;
 
+  /**
+   * Creates an exception describing a resource that could not be found.
+   *
+   * @param resource name of the missing resource
+   * @param id identifier used to look up the resource
+   */
   public ResourceNotFoundException(String resource, Object id) {
     super(resource + " not found: " + id);
     this.resource = resource;
     this.id = id;
   }
 
-  @SuppressWarnings("checkstyle:MissingJavadocMethod")
+  /** Returns the name of the missing resource. */
   public String resource() {
     return resource;
   }
 
-  @SuppressWarnings("checkstyle:MissingJavadocMethod")
+  /** Returns the identifier used to look up the resource. */
   public Object id() {
     return id;
   }

@@ -1,4 +1,4 @@
-package io.github.firasrg.apikit.core.exceptions;
+package io.github.firasrg.apikit.core.exception;
 
 import java.io.Serial;
 
@@ -9,12 +9,17 @@ public class InvalidSortException extends ApiKitException {
 
   private final String property;
 
+  /**
+   * Creates an exception for a sort property that is not supported.
+   *
+   * @param property the unsupported property
+   */
   public InvalidSortException(String property) {
     super("Unsupported sort property: " + property);
     this.property = property;
   }
 
-  /** Returns the rejected property name. */
+  /** Returns the unsupported sort property. */
   public String property() {
     return property;
   }

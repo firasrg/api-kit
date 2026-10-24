@@ -3,7 +3,6 @@
 [![CI](https://github.com/firasrg/api-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/firasrg/api-kit/actions/workflows/ci.yml)
 ![Java 17+](https://img.shields.io/badge/Java-17%2B-blue)
 ![Spring Boot 4.x](https://img.shields.io/badge/Spring%20Boot-4.x-6db33f)
-[![License](https://img.shields.io/badge/license-TODO-lightgrey)](LICENSE)
 
 A Java library that removes repetitive backend CRUD work without hiding Spring, Spring Data or JPA:
 service and mapper contracts, pagination and sorting, typed filtering, transport-aware error
@@ -134,7 +133,3 @@ Issues and pull requests are welcome. Before opening a PR:
 
 See [`.github/copilot-instructions.md`](.github/copilot-instructions.md) for the project's
 architecture rules and conventions.
-
-## License
-
-TODO: replace with your license, e.g. Apache License 2.0. See [LICENSE](LICENSE).

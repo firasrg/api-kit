@@ -1,4 +1,4 @@
-# apikit
+# Backend API Kit
 
 [![CI](https://github.com/firasrg/api-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/firasrg/api-kit/actions/workflows/ci.yml)
 ![Java 17+](https://img.shields.io/badge/Java-17%2B-blue)

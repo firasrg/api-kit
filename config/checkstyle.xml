@@ -14,6 +14,10 @@
         <property name="max" value="100" /> <!-- match the Spotless formatter -->
         <property name="ignorePattern" value="^package .*|^import .*|https?://" />
     </module>
+    <module name="SuppressionFilter">
+        <property name="file" value="${checkstyle.suppressions.file}" />
+    </module>
+    <module name="JavadocPackage" />
     <module name="TreeWalker">
         <!-- required by SuppressWarningsFilter -->
         <module name="SuppressWarningsHolder" />

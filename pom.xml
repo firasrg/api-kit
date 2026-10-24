@@ -7,6 +7,13 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>apikit</name>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <modules>
         <module>apikit-core</module>
         <module>apikit-spring</module>
@@ -148,6 +155,7 @@
                     <version>3.6.0</version>
                     <configuration>
                         <configLocation>${maven.multiModuleProjectDirectory}/config/checkstyle.xml</configLocation>
+                        <propertyExpansion>checkstyle.suppressions.file=${maven.multiModuleProjectDirectory}/config/checkstyle-suppressions.xml</propertyExpansion>
                         <consoleOutput>true</consoleOutput>
                         <failOnViolation>true</failOnViolation>
                         <violationSeverity>warning</violationSeverity>

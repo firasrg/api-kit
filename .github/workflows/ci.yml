@@ -17,7 +17,7 @@ jobs:
       matrix:
         java: [ 17, 21, 25 ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
@@ -31,7 +31,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check branch name and PR title
         env:
           BRANCH: ${{ github.head_ref }}

@@ -1,0 +1,40 @@
+#!/bin/sh
+# Enforces Conventional Commits on the subject and an optional "Comments:" bullet section.
+msg=$(tr -d '\r' < "$1" | grep -v '^#')
+subject=$(printf '%s\n' "$msg" | head -n1)
+
+case "$subject" in
+  Merge\ *|Revert\ \"*|fixup!\ *|squash!\ *) exit 0 ;;
+esac
+
+pattern='^(feat|fix|docs|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9-]+\))?!?: [^ ]'
+if ! printf '%s\n' "$subject" | grep -Eq "$pattern" || [ "${#subject}" -gt 72 ]; then
+  cat >&2 <<'EOF'
+Invalid commit subject. Expected: <type>(<scope>)!: <description>  (max 72 chars)
+Types: feat fix docs refactor perf test build ci chore revert
+Example: feat(spring): add CoreJpaRepository
+EOF
+  exit 1
+fi
+
+rest=$(printf '%s\n' "$msg" | sed 1d)
+if [ -n "$rest" ] && ! printf '%s\n' "$rest" | awk '
+  NR == 1 && $0 != "" { exit 1 }
+  /^$/ || /^(Signed-off-by|Co-authored-by): / { next }
+  $0 == "Comments:" && !seen { seen = 1; next }
+  seen && /^- / { bullets++; next }
+  seen && bullets && /^  / { next }
+  { exit 1 }
+  END { if (seen && !bullets) exit 1 }
+'; then
+  cat >&2 <<'EOF'
+Invalid commit body. Expected a blank line after the subject, then an optional section:
+
+Comments:
+- first point
+- second point (continuation lines are indented by two spaces)
+
+Only "Signed-off-by:" and "Co-authored-by:" trailers are allowed besides this section.
+EOF
+  exit 1
+fi

@@ -1,15 +1,20 @@
 #!/bin/sh
 if branch=$(git symbolic-ref --short -q HEAD); then
-  sh "$(dirname "$0")/branch-name-check" "$branch" || exit 1
+  sh "$(dirname "$0")/branch-name-check.sh" "$branch" || exit 1
 fi
 
 set -e
 cd "$(git rev-parse --show-toplevel)"
 
-git diff --cached --name-only --diff-filter=ACM | grep -q '\.java$' || exit 0
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+printf '%s\n' "$staged" | grep -Eq '\.(java|xml|ya?ml)$' || exit 0
 
-echo "pre-commit: Spotless + Checkstyle..."
-if ! ./mvnw -q --batch-mode spotless:check checkstyle:check; then
+goals="spotless:check"
+printf '%s\n' "$staged" | grep -q '\.java$' && goals="$goals checkstyle:check"
+
+echo "pre-commit: $goals..."
+# shellcheck disable=SC2086
+if ! ./mvnw -q --batch-mode $goals; then
   echo "Run './mvnw spotless:apply', fix Checkstyle issues, re-stage, and commit again." >&2
   exit 1
 fi

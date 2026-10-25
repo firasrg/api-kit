@@ -24,7 +24,7 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: maven
       - name: Verify
-        run: ./mvnw --batch-mode --no-transfer-progress clean verify ${{ matrix.maven-args }}
+        run: ./mvnw --batch-mode --no-transfer-progress clean verify
 
   conventions:
     name: Check branch name and PR title
@@ -37,6 +37,6 @@ jobs:
           BRANCH: ${{ github.head_ref }}
           TITLE: ${{ github.event.pull_request.title }}
         run: |
-          sh .githooks/branch-name-check "$BRANCH"
+          sh .githooks/branch-name-check.sh "$BRANCH"
           printf '%s\n' "$TITLE" > "$RUNNER_TEMP/msg"
           sh .githooks/commit-msg "$RUNNER_TEMP/msg"

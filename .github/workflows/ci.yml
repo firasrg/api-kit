@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  verify:
+  build:
     name: JDK ${{ matrix.java }}
     runs-on: ubuntu-latest
     strategy:
@@ -25,3 +25,18 @@ jobs:
           cache: maven
       - name: Verify
         run: ./mvnw --batch-mode --no-transfer-progress clean verify ${{ matrix.maven-args }}
+
+  conventions:
+    name: Check branch name and PR title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check branch name and PR title
+        env:
+          BRANCH: ${{ github.head_ref }}
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          sh .githooks/branch-name-check "$BRANCH"
+          printf '%s\n' "$TITLE" > "$RUNNER_TEMP/msg"
+          sh .githooks/commit-msg "$RUNNER_TEMP/msg"

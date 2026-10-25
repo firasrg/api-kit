@@ -24,7 +24,7 @@
     <project.build.outputTimestamp>2026-01-01T00:00:00Z</project.build.outputTimestamp>
     <junit.version>5.14.4</junit.version>
     <assertj.version>3.27.7</assertj.version>
-    <spring-boot.version>4.1.0</spring-boot.version>
+    <spring-boot.version>4.1.2</spring-boot.version>
   </properties>
 
   <dependencyManagement>

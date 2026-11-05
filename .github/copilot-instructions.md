@@ -64,9 +64,9 @@ Priority order: correctness → public API clarity → type safety → maintaina
 
 ## Models, Mapping, Filtering, Pagination
 
-- Never expose JPA entities through public REST APIs. Use semantic names: `Customer`, `CreateCustomerRequest`, `UpdateCustomerRequest`, `CustomerResponse`, `CustomerCriteria`. Avoid `Dto`/`Data`/`Model`/`Object` suffixes when a role name fits. Prefer records for immutable models; do not force them where mutability is needed.
+- Never expose JPA entities through public REST APIs. Use semantic names: `Product`, `CreateProductRequest`, `UpdateProductRequest`, `ProductResponse`, `ProductCriteria`. Avoid `Dto`/`Data`/`Model`/`Object` suffixes when a role name fits. Prefer records for immutable models; do not force them where mutability is needed.
 - **Mapping** stays replaceable. Contract example: `CrudMapper<E,C,U,R>` with `toResponse`, `fromCreate`, `update`. MapStruct may be supported but never mandatory in `core`. Prefer compile-time mapping over reflection-based mapping.
-- **Filtering** is first-class and typed: e.g. `record CustomerCriteria(String name, CustomerStatus status, LocalDate createdAfter)`. No `Map<String,Object>` for normal query APIs. Integrate with `Specification<E>`. Entity-specific criteria must remain possible. No giant universal filter model; no custom query language without demonstrated need.
+- **Filtering** is first-class and typed: e.g. `record ProductCriteria(String name, ProductStatus status, LocalDate createdAfter)`. No `Map<String,Object>` for normal query APIs. Integrate with `Specification<E>`. Entity-specific criteria must remain possible. No giant universal filter model; no custom query language without demonstrated need.
 - **Pagination/sorting** must be deterministic and documented: default page, size, invalid-value handling, sort syntax, multi-sort behavior. No unbounded list endpoints on potentially large data. Never pass arbitrary client strings as persistence sort paths; validate or map sortable properties.
 
 ## REST (priority transport), Errors, Validation, Transactions

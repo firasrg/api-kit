@@ -26,7 +26,7 @@ class PageResultTests {
 
   @Test
   void totalPages_shouldThrow_whenPageCountExceedsIntRange() {
-    PageResult<ContentItem> result = pageOf(0, 1, Integer.MAX_VALUE + 1L);
+    PageResult<Product> result = pageOf(0, 1, Integer.MAX_VALUE + 1L);
 
     assertThatThrownBy(result::totalPages).isInstanceOf(ArithmeticException.class);
   }
@@ -43,7 +43,7 @@ class PageResultTests {
 
   @Test
   void hasNext_shouldBeFalse_onLastPage() {
-    PageResult<ContentItem> lastPage = pageOf(2, 20, 41);
+    PageResult<Product> lastPage = pageOf(2, 20, 41);
 
     assertThat(lastPage.content()).hasSize(1);
     assertThat(lastPage.hasNext()).isFalse();
@@ -51,7 +51,7 @@ class PageResultTests {
 
   @Test
   void hasNext_shouldBeFalse_onLastPageWhenTotalIsExactMultiple() {
-    PageResult<ContentItem> lastPage = pageOf(1, 20, 40);
+    PageResult<Product> lastPage = pageOf(1, 20, 40);
 
     assertThat(lastPage.content()).hasSize(20);
     assertThat(lastPage.hasNext()).isFalse();
@@ -79,9 +79,9 @@ class PageResultTests {
 
   @Test
   void map_shouldConvertItemsAndKeepMetadata() {
-    PageResult<String> result = pageOf(1, 2, 7).map(ContentItem::name);
+    PageResult<String> result = pageOf(1, 2, 7).map(Product::name);
 
-    assertThat(result.content()).containsExactly("Customer 3", "Customer 4");
+    assertThat(result.content()).containsExactly("Product 3", "Product 4");
     assertThat(result.page()).isEqualTo(1);
     assertThat(result.size()).isEqualTo(2);
     assertThat(result.totalElements()).isEqualTo(7);
@@ -89,28 +89,28 @@ class PageResultTests {
 
   @Test
   void constructor_shouldThrow_whenContentExceedsPageSize() {
-    List<ContentItem> threeCustomers =
-        List.of(new ContentItem(1, "A"), new ContentItem(2, "B"), new ContentItem(3, "C"));
+    List<Product> threeProducts =
+        List.of(new Product(1, "A"), new Product(2, "B"), new Product(3, "C"));
 
-    assertThatThrownBy(() -> new PageResult<>(threeCustomers, 0, 2, 3))
+    assertThatThrownBy(() -> new PageResult<>(threeProducts, 0, 2, 3))
         .isInstanceOf(IllegalArgumentException.class);
   }
 
   /**
    * Builds the page a repository would return for the given paging values: the content is the slice
-   * of customers 1..totalElements that falls inside the requested page.
+   * of products 1..totalElements that falls inside the requested page.
    */
-  private static PageResult<ContentItem> pageOf(int page, int size, long totalElements) {
+  private static PageResult<Product> pageOf(int page, int size, long totalElements) {
     long offset = (long) page * size;
     int count = (int) Math.max(0, Math.min(size, totalElements - offset));
 
-    List<ContentItem> content =
+    List<Product> content =
         LongStream.range(offset, offset + count)
-            .mapToObj(i -> new ContentItem(i + 1, "Customer " + (i + 1)))
+            .mapToObj(i -> new Product(i + 1, "Product " + (i + 1)))
             .toList();
 
     return new PageResult<>(content, page, size, totalElements);
   }
 
-  private record ContentItem(long id, String name) {}
+  private record Product(long id, String name) {}
 }

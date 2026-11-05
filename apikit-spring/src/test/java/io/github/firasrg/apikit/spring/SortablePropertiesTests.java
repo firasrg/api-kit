@@ -7,6 +7,7 @@ import io.github.firasrg.apikit.core.exception.InvalidSortException;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+/** Verifies whitelist-based sort-property mapping and rejection of unapproved properties. */
 class SortablePropertiesTests {
 
   @Test

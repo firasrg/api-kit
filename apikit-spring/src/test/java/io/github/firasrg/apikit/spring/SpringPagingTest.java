@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+/** Verifies conversion between core paging models and Spring Data paging types. */
 class SpringPagingTest {
 
   private static final SortableProperties SORTABLE =

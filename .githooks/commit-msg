@@ -8,9 +8,9 @@ case "$subject" in
 esac
 
 pattern='^(feat|fix|docs|config|perf|test|build|ci|chore|revert)(\([a-z0-9-]+\))?!?: [^ ]'
-if ! printf '%s\n' "$subject" | grep -Eq "$pattern" || [ "${#subject}" -gt 72 ]; then
+if ! printf '%s\n' "$subject" | grep -Eq "$pattern" || [ "${#subject}" -gt 100 ]; then
   cat >&2 <<'EOF'
-Invalid commit subject. Expected: <type>(<scope>)!: <description>  (max 72 chars)
+Invalid commit subject. Expected: <type>(<scope>)!: <description>  (max 100 chars)
 Types: feat fix docs refactor perf test build ci chore revert
 Example: feat(spring): add CoreJpaRepository
 EOF

@@ -73,12 +73,12 @@ Compose only the capabilities a resource needs. Contracts are small and generics
 
 ```java
 // Typed filter, entity-specific and immutable
-public record CustomerCriteria(String name, CustomerStatus status, LocalDate createdAfter) {}
+public record ProductCriteria(String name, ProductStatus status, LocalDate createdAfter) {}
 
 // Full CRUD + search: CrudService<ID, C, U, R> composed with SearchService<F, R>
-public interface CustomerService
-    extends CrudService<UUID, CreateCustomerRequest, UpdateCustomerRequest, CustomerResponse>,
-        SearchService<CustomerCriteria, CustomerResponse> {}
+public interface ProductService
+    extends CrudService<UUID, CreateProductRequest, UpdateProductRequest, ProductResponse>,
+        SearchService<ProductCriteria, ProductResponse> {}
 
 // Read-only resource: expose just what you need
 public interface CountryService extends ReadService<String, CountryResponse> {}
